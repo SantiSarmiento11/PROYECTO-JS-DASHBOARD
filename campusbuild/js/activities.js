@@ -37,4 +37,28 @@ function refreshProjectDependencies(projectId = '') {
     document.querySelector('dashboard-stats')?.render?.();
     document.querySelector('activity-calendar')?.render?.();
 }
+
+function renderMilestoneActivities(projectId, assocIds = [], activities = Storage.getAll('activities')) {
+    const scopedActivities = projectId ? activities.filter(a => a.projectId === projectId) : [];
+  
+    if (!projectId) {
+      return '<em style="color:var(--color-muted);font-size:13px;">Selecciona primero un proyecto.</em>';
+    }
+    if (!scopedActivities.length) {
+      return '<em style="color:var(--color-muted);font-size:13px;">Este proyecto no tiene actividades creadas.</em>';
+    }
+  
+    return scopedActivities.map(a => `
+      <label style="display:flex;align-items:center;gap:8px;padding:4px 0;font-size:13px;cursor:pointer;">
+        <input type="checkbox" value="${a.id}" ${assocIds.includes(a.id) ? 'checked' : ''} class="ms-act-check">
+        ${_esc(a.nombre)}
+      </label>`).join('');
+}
+  
+  // ── Web Component: <activity-list> ───────────────────────────
+  /**
+   * Tabla de actividades con proyecto, responsable y estado.
+   * El responsable se resuelve cruzando `responsableId` con resources.
+   * Botones de edición/eliminación invocan ActivitiesModule (window).
+   */
   
