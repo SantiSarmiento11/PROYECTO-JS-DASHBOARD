@@ -118,4 +118,70 @@ class ActivityList extends HTMLElement {
 }
 customElements.define('activity-list', ActivityList);
   
+// ── Web Component: <milestone-list> ──────────────────────────
+/**
+ * Tabla de hitos. Muestra las actividades asociadas de cada hito
+ * y lo marca como cumplido cuando todas tienen estado 'terminada'.
+ */
+class MilestoneList extends HTMLElement {
+    connectedCallback() { this.render(); }
+  
+    render() {
+      const milestones = Storage.getAll('milestones');
+      const activities = Storage.getAll('activities');
+      const projects = Storage.getAll('projects');
+  
+      if (milestones.length === 0) {
+        this.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">${icon('trophy')}</div>
+            <p>No hay hitos definidos. Crea uno usando el botón <strong>Nuevo Hito</strong>.</p>
+          </div>`;
+        return;
+      }
+  
+      this.innerHTML = `
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Hito</th>
+                <th>Proyecto</th>
+                <th>Actividades asociadas</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${milestones.map(m => {
+        const proj = projects.find(p => p.id === m.projectId);
+        const assocIds = m.activityIds || [];
+        const assocActs = activities.filter(a => assocIds.includes(a.id));
+        const allDone = milestoneIsCompleted(m, activities);
+        const rowCls = allDone ? 'milestone-row completed' : 'milestone-row';
+        const details = [_esc(m.descripcion || '')].filter(Boolean).join(' · ');
+        return `
+                  <tr class="${rowCls}">
+                    <td><strong>${_esc(m.nombre)}</strong><br><small style="color:var(--color-muted)">${formatDate(resolveMilestoneDate(m, activities))}${details ? ` · ${details}` : ''}</small></td>
+                    <td>${proj ? _esc(proj.nombre) : '—'}</td>
+                    <td style="max-width:220px;font-size:12px;">
+                      ${assocActs.length ? assocActs.map(a => `<span style="display:inline-block;background:var(--color-bg);border-radius:4px;padding:1px 7px;margin:2px;">${_esc(a.nombre)}</span>`).join('') : '<em style="color:var(--color-muted)">Sin actividades</em>'}
+                    </td>
+                    <td>
+                      ${allDone
+            ? `<span class="badge badge-milestone-ok">${icon('check')} Cumplido</span>`
+            : `<span class="badge badge-milestone-no">${icon('pending')} Pendiente</span>`}
+                    </td>
+                    <td style="display:flex;gap:4px;align-items:center;">
+                      <button class="btn-icon" title="Editar" aria-label="Editar" onclick="ActivitiesModule.openEditMilestone('${m.id}')">${icon('edit')}</button>
+                      <button class="btn-icon" title="Eliminar" aria-label="Eliminar" onclick="ActivitiesModule.confirmDeleteMilestone('${m.id}')">${icon('trash')}</button>
+                    </td>
+                  </tr>`;
+      }).join('')}
+            </tbody>
+          </table>
+        </div>`;
+    }
+}
+customElements.define('milestone-list', MilestoneList);
   
