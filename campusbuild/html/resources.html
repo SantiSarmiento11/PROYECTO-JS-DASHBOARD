@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusBuild – Recursos Humanos</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <span>CampusBuild</span>
+          <small>Gestión de Proyectos</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">General</div>
+        <a href="./index.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Panel de Control
+        </a>
+
+        <div class="nav-section-label">Proyectos</div>
+        <a href="./projects.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Proyectos
+        </a>
+        <a href="./activities.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M4 4h16v16H4zM8 8h8M8 12h6M8 16h4" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Actividades e Hitos
+        </a>
+
+        <div class="nav-section-label">Personal</div>
+        <a href="./resources.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" fill="none" stroke-width="2"/>
+            <path d="M4 20c0-4 16-4 16 0" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Recursos Humanos
+        </a>
+
+        <div class="nav-section-label">Planificación</div>
+        <a href="./calendar.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <rect x="3" y="5" width="18" height="16" stroke="currentColor" fill="none" stroke-width="2"/>
+            <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Cronograma
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">&copy; 2025 CampusBuild</div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div>
+          <div class="topbar-title">Recursos Humanos</div>
+          <div class="topbar-subtitle">Gestión del personal del proyecto</div>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <section>
+          <div class="section-header">
+            <h1 class="section-title">Recursos Humanos</h1>
+            <button class="btn btn-primary" id="btn-new-resource">
+              <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              Nuevo Recurso
+            </button>
+          </div>
+          <resource-list></resource-list>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Modal</h2>
+        <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="modal-body"></div>
+      <div class="form-actions">
+        <button class="btn btn-ghost" id="modal-cancel-btn">Cancelar</button>
+        <button class="btn btn-primary" id="modal-save">Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script type="module" src="../js/resources/resources.js"></script>
+</body>
+</html>

@@ -3,91 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusBuild – Gestión de Proyectos</title>
+  <title>CampusBuild – Panel de Control</title>
   <meta name="description" content="Plataforma centralizada para gestionar proyectos, actividades, hitos y recursos humanos de CampusBuild.">
   <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
-
-<div class="app-shell">
-
-  <!-- ── Sidebar ── -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-icon">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+        </div>
+        <div>
+          <span>CampusBuild</span>
+          <small>Gestión de Proyectos</small>
+        </div>
       </div>
-      <div>
-        <span>CampusBuild</span>
-        <small>Gestión de Proyectos</small>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">General</div>
+        <a href="./index.html" class="nav-link active">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Panel de Control
+        </a>
+
+        <div class="nav-section-label">Proyectos</div>
+        <a href="./projects.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Proyectos
+        </a>
+        <a href="./activities.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <path d="M4 4h16v16H4zM8 8h8M8 12h6M8 16h4" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Actividades e Hitos
+        </a>
+
+        <div class="nav-section-label">Personal</div>
+        <a href="./resources.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <circle cx="12" cy="8" r="4" stroke="currentColor" fill="none" stroke-width="2"/>
+            <path d="M4 20c0-4 16-4 16 0" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Recursos Humanos
+        </a>
+
+        <div class="nav-section-label">Planificación</div>
+        <a href="./calendar.html" class="nav-link">
+          <svg viewBox="0 0 24 24" class="icon-svg">
+            <rect x="3" y="5" width="18" height="16" stroke="currentColor" fill="none" stroke-width="2"/>
+            <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" fill="none" stroke-width="2"/>
+          </svg>
+          Cronograma
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        &copy; 2025 CampusBuild
       </div>
-    </div>
+    </aside>
 
-    <nav class="sidebar-nav">
-      <div class="nav-section-label">General</div>
-      <a href="#" class="nav-link" data-view="dashboard">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg> Panel de Control
-      </a>
+    <div class="main-area">
+      <header class="topbar">
+        <div>
+          <div class="topbar-title">Panel de Control</div>
+          <div class="topbar-subtitle">Resumen general del sistema</div>
+        </div>
+      </header>
 
-      <div class="nav-section-label">Proyectos</div>
-      <a href="#" class="nav-link" data-view="projects">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <path d="M3 21h18M4 21V10l8-6 8 6v11" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg> Proyectos
-      </a>
-      <a href="#" class="nav-link" data-view="activities">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <path d="M4 4h16v16H4zM8 8h8M8 12h6M8 16h4" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg> Actividades e Hitos
-      </a>
-
-      <div class="nav-section-label">Personal</div>
-      <a href="#" class="nav-link" data-view="resources">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <circle cx="12" cy="8" r="4" stroke="currentColor" fill="none" stroke-width="2"/>
-          <path d="M4 20c0-4 16-4 16 0" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg> Recursos Humanos
-      </a>
-
-      <div class="nav-section-label">Planificación</div>
-      <a href="#" class="nav-link" data-view="calendar">
-        <svg viewBox="0 0 24 24" class="icon-svg">
-          <rect x="3" y="5" width="18" height="16" stroke="currentColor" fill="none" stroke-width="2"/>
-          <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" fill="none" stroke-width="2"/>
-        </svg> Cronograma
-      </a>
-    </nav>
-
-    <div class="sidebar-footer">
-      &copy; 2025 CampusBuild
-    </div>
-  </aside>
-
-  <!-- ── Main Area ── -->
-  <div class="main-area">
-
-    <!-- Topbar -->
-    <header class="topbar">
-      <div>
-        <div class="topbar-title" id="topbar-title">Panel de Control</div>
-        <div class="topbar-subtitle" id="topbar-subtitle">Resumen general del sistema</div>
-      </div>
-    </header>
-
-    <!-- Page Content -->
-    <main class="page-content">
-
-      <!-- ════════════════════════ DASHBOARD ════════════════════════ -->
-      <section id="view-dashboard" class="view">
+      <main class="page-content">
         <dashboard-stats></dashboard-stats>
 
         <div class="section-header">
           <h2 class="section-title">Actividades Recientes</h2>
-          <button class="btn btn-ghost btn-sm" onclick="navigate('activities')">Ver todas →</button>
+          <a class="btn btn-ghost btn-sm" href="./activities.html">Ver todas →</a>
         </div>
         <div id="recent-activities"></div>
 
@@ -97,118 +92,51 @@
           <h2 class="section-title">Accesos Rápidos</h2>
         </div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="navigate('projects');ProjectsModule.openNew()">
+          <button class="btn btn-primary" id="btn-dashboard-new-project">
             <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
               <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Proyecto
+            </svg>
+            Nuevo Proyecto
           </button>
-          <button class="btn btn-ghost" onclick="navigate('activities');ActivitiesModule.openNewActivity()">
+          <button class="btn btn-ghost" id="btn-dashboard-new-activity">
             <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
               <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nueva Actividad
+            </svg>
+            Nueva Actividad
           </button>
-          <button class="btn btn-ghost" onclick="navigate('resources');ResourcesModule.openNew()">
+          <button class="btn btn-ghost" id="btn-dashboard-new-resource">
             <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
               <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Recurso
+            </svg>
+            Nuevo Recurso
           </button>
-          <button class="btn btn-ghost" onclick="navigate('activities');ActivitiesModule.openNewMilestone()">
+          <button class="btn btn-ghost" id="btn-dashboard-new-milestone">
             <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
               <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Hito
+            </svg>
+            Nuevo Hito
           </button>
         </div>
-      </section>
-
-      <!-- ════════════════════════ PROJECTS ════════════════════════ -->
-      <section id="view-projects" class="view">
-        <div class="section-header">
-          <h1 class="section-title">Proyectos de Construcción</h1>
-          <button class="btn btn-primary" id="btn-new-project" onclick="ProjectsModule.openNew()">
-            <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Proyecto
-          </button>
-        </div>
-        <project-list></project-list>
-      </section>
-
-      <!-- ═══════════════════ ACTIVITIES & MILESTONES ══════════════ -->
-      <section id="view-activities" class="view">
-
-        <div class="section-header">
-          <h1 class="section-title">Actividades</h1>
-          <button class="btn btn-primary" onclick="ActivitiesModule.openNewActivity()">
-            <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nueva Actividad
-          </button>
-        </div>
-        <activity-list></activity-list>
-
-        <div style="height:32px;"></div>
-
-        <div class="section-header">
-          <h2 class="section-title">Hitos del Proyecto</h2>
-          <button class="btn btn-ghost" onclick="ActivitiesModule.openNewMilestone()">
-            <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
-              <path d="M8 4h8v3a4 4 0 0 1-8 0V4Z" stroke="currentColor" fill="none" stroke-width="2"/>
-              <path d="M9 16h6M12 11v5m-5-9H4a3 3 0 0 0 3 3m10-3h3a3 3 0 0 1-3 3M10 20h4" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Hito
-          </button>
-        </div>
-        <milestone-list></milestone-list>
-
-      </section>
-
-      <!-- ════════════════════════ RESOURCES ═══════════════════════ -->
-      <section id="view-resources" class="view">
-        <div class="section-header">
-          <h1 class="section-title">Recursos Humanos</h1>
-          <button class="btn btn-primary" onclick="ResourcesModule.openNew()">
-            <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
-              <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
-            </svg> Nuevo Recurso
-          </button>
-        </div>
-        <resource-list></resource-list>
-      </section>
-
-      <!-- ════════════════════════ CALENDAR ════════════════════════ -->
-      <section id="view-calendar" class="view">
-        <h1 class="section-title" style="margin-bottom:18px;">Cronograma de Actividades</h1>
-        <activity-calendar></activity-calendar>
-      </section>
-
-    </main>
-  </div><!-- /main-area -->
-
-</div><!-- /app-shell -->
-
-<!-- ── Global Modal ── -->
-<div class="modal-backdrop" id="modal-backdrop">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="modal-header">
-      <h2 class="modal-title" id="modal-title">Modal</h2>
-      <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">&times;</button>
-    </div>
-    <div id="modal-body"></div>
-    <div class="form-actions">
-      <button class="btn btn-ghost" id="modal-cancel-btn">Cancelar</button>
-      <button class="btn btn-primary" id="modal-save">Guardar</button>
+      </main>
     </div>
   </div>
-</div>
 
-<!-- ── Toast Container ── -->
-<div class="toast-container" id="toast-container"></div>
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h2 class="modal-title" id="modal-title">Modal</h2>
+        <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">&times;</button>
+      </div>
+      <div id="modal-body"></div>
+      <div class="form-actions">
+        <button class="btn btn-ghost" id="modal-cancel-btn">Cancelar</button>
+        <button class="btn btn-primary" id="modal-save">Guardar</button>
+      </div>
+    </div>
+  </div>
 
-<!-- ── Scripts (ES Modules) ── -->
-<script type="module" src="../js/app.js"></script>
-<script type="module" src="../js/projects.js"></script>
-<script type="module" src="../js/activities.js"></script>
-<script type="module" src="../js/resources.js"></script>
-<script type="module" src="../js/calendar.js"></script>
+  <div class="toast-container" id="toast-container"></div>
 
+  <script type="module" src="../js/dashboard/dashboard.js"></script>
 </body>
 </html>
