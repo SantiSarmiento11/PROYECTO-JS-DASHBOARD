@@ -1,10 +1,13 @@
 import Storage from '../core/storage.js';
 import { activityEndDate, milestoneIsCompleted, resolveMilestoneDate } from '../core/utils.js';
-import { icon, initAppShell } from '../core/ui.js';
+import { icon } from '../core/ui.js';
 
 const DAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
 const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
+/**
+ * Calendario visual de proyectos, hitos y actividades.
+ */
 class ActivityCalendar extends HTMLElement {
   constructor() {
     super();
@@ -20,6 +23,7 @@ class ActivityCalendar extends HTMLElement {
       this.addEventListener('click', event => {
         const actionButton = event.target.closest('[data-action]');
         if (!actionButton) return;
+
         if (actionButton.dataset.action === 'prev-month') this.changeMonth(-1);
         if (actionButton.dataset.action === 'next-month') this.changeMonth(1);
       });
@@ -31,9 +35,13 @@ class ActivityCalendar extends HTMLElement {
         }
       });
     }
+
     this.render();
   }
 
+  /**
+   * Cambia el mes actual manteniendo el año coherente.
+   */
   changeMonth(step) {
     this.month += step;
     if (this.month < 0) {
@@ -47,6 +55,9 @@ class ActivityCalendar extends HTMLElement {
     this.render();
   }
 
+  /**
+   * Genera todo el calendario a partir de proyectos, hitos y actividades.
+   */
   render() {
     const projects = Storage.getAll('projects');
     const activities = Storage.getAll('activities');
@@ -125,8 +136,13 @@ class ActivityCalendar extends HTMLElement {
         <div class="cal-header">${DAYS.map(day => `<div class="cal-header-cell">${day}</div>`).join('')}</div>
         <div class="cal-body">
           ${cells.map(cell => {
-            const dateStr = cell.current ? `${this.year}-${String(this.month + 1).padStart(2, '0')}-${String(cell.day).padStart(2, '0')}` : null;
-            const dayEntries = dateStr ? entries.filter(entry => entry.start <= dateStr && entry.end >= dateStr).sort((a, b) => a.order - b.order) : [];
+            const dateStr = cell.current
+              ? `${this.year}-${String(this.month + 1).padStart(2, '0')}-${String(cell.day).padStart(2, '0')}`
+              : null;
+            const dayEntries = dateStr
+              ? entries.filter(entry => entry.start <= dateStr && entry.end >= dateStr).sort((a, b) => a.order - b.order)
+              : [];
+
             return `
               <div class="cal-day ${cell.current ? '' : 'other-month'} ${dateStr === todayStr ? 'today' : ''}">
                 <div class="cal-day-num">${cell.day}</div>
@@ -140,16 +156,4 @@ class ActivityCalendar extends HTMLElement {
 
 if (!customElements.get('activity-calendar')) {
   customElements.define('activity-calendar', ActivityCalendar);
-}
-
-function initCalendarPage() {
-  if (!document.querySelector('activity-calendar')) return;
-  initAppShell();
-  document.querySelector('activity-calendar')?.render();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initCalendarPage);
-} else {
-  initCalendarPage();
 }

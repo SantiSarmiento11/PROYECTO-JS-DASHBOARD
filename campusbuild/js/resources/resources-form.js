@@ -1,75 +1,11 @@
 import Storage from '../core/storage.js';
-import { escapeHtml, formatDate } from '../core/utils.js';
-import { icon, showToast, openModal, closeModal, initAppShell } from '../core/ui.js';
+import { escapeHtml } from '../core/utils.js';
+import { showToast, openModal, closeModal } from '../core/ui.js';
 
-class ResourceList extends HTMLElement {
-  connectedCallback() {
-    if (!this.dataset.bound) {
-      this.dataset.bound = 'true';
-      this.addEventListener('click', event => {
-        const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
-        const { action, resourceId } = actionButton.dataset;
-        if (action === 'edit') openEdit(resourceId);
-        if (action === 'delete') confirmDelete(resourceId);
-      });
-    }
-    this.render();
-  }
-
-  render() {
-    const resources = Storage.getAll('resources');
-
-    if (!resources.length) {
-      this.innerHTML = `
-        <div class="empty-state">
-          <div class="empty-icon">${icon('resource')}</div>
-          <p>No hay recursos humanos registrados. Crea uno con <strong>Nuevo Recurso</strong>.</p>
-        </div>`;
-      return;
-    }
-
-    this.innerHTML = `
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Identificación</th>
-              <th>Nombre</th>
-              <th>Rol</th>
-              <th>Fecha Nacimiento</th>
-              <th>Sangre</th>
-              <th>ARL</th>
-              <th>Salario</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${resources.map(resource => `
-              <tr>
-                <td>${escapeHtml(resource.identificacion)}</td>
-                <td><strong>${escapeHtml(resource.nombre)}</strong>${resource.genero ? `<br><small style="color:var(--color-muted)">${escapeHtml(resource.genero)}</small>` : ''}</td>
-                <td><span style="background:var(--color-bg);padding:2px 8px;border-radius:4px;font-size:12px;">${escapeHtml(resource.rol)}</span></td>
-                <td>${formatDate(resource.fechaNacimiento)}</td>
-                <td><span style="font-weight:700;color:var(--color-danger);">${escapeHtml(resource.tipoSangre)}</span></td>
-                <td>${escapeHtml(resource.arl)}</td>
-                <td>$${Number(resource.salario || 0).toLocaleString('es-CO')}</td>
-                <td style="display:flex;gap:4px;align-items:center;">
-                  <button class="btn-icon" title="Editar" aria-label="Editar" data-action="edit" data-resource-id="${resource.id}">${icon('edit')}</button>
-                  <button class="btn-icon" title="Eliminar" aria-label="Eliminar" data-action="delete" data-resource-id="${resource.id}">${icon('trash')}</button>
-                </td>
-              </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>`;
-  }
-}
-
-if (!customElements.get('resource-list')) {
-  customElements.define('resource-list', ResourceList);
-}
-
-function buildForm(resource = {}) {
+/**
+ * Renderiza el formulario de recurso con valores actuales o vacíos.
+ */
+function buildResourceForm(resource = {}) {
   const roles = ['Ingeniero', 'Arquitecto', 'Supervisor', 'Operario', 'Electricista', 'Plomero', 'Otro'];
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
@@ -126,16 +62,34 @@ function buildForm(resource = {}) {
     </div>`;
 }
 
+/**
+ * Abre el formulario para crear un recurso humano.
+ */
 export function openNew() {
-  openModal({ title: 'Nuevo Recurso Humano', body: buildForm(), onSave: () => saveResource(null) });
+  openModal({
+    title: 'Nuevo Recurso Humano',
+    body: buildResourceForm(),
+    onSave: () => saveResource(null)
+  });
 }
 
-function openEdit(id) {
+/**
+ * Abre el formulario de edición de un recurso existente.
+ */
+export function openEdit(id) {
   const resource = Storage.getById('resources', id);
   if (!resource) return;
-  openModal({ title: 'Editar Recurso Humano', body: buildForm(resource), onSave: () => saveResource(id) });
+
+  openModal({
+    title: 'Editar Recurso Humano',
+    body: buildResourceForm(resource),
+    onSave: () => saveResource(id)
+  });
 }
 
+/**
+ * Valida y guarda un recurso en localStorage.
+ */
 function saveResource(id) {
   const identificacion = document.getElementById('res-id').value.trim();
   const nombre = document.getElementById('res-nombre').value.trim();
@@ -164,7 +118,10 @@ function saveResource(id) {
   document.querySelector('resource-list')?.render();
 }
 
-function confirmDelete(id) {
+/**
+ * Confirma la eliminación de un recurso y actualiza la tabla.
+ */
+export function confirmDelete(id) {
   const resource = Storage.getById('resources', id);
   if (!resource) return;
 
@@ -180,17 +137,4 @@ function confirmDelete(id) {
       showToast('Recurso eliminado.', 'success');
     }
   });
-}
-
-function initResourcesPage() {
-  if (!document.querySelector('resource-list')) return;
-  initAppShell();
-  document.getElementById('btn-new-resource')?.addEventListener('click', openNew);
-  document.querySelector('resource-list')?.render();
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initResourcesPage);
-} else {
-  initResourcesPage();
 }
