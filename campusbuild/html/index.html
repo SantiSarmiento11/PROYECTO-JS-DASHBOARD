@@ -60,7 +60,23 @@
           <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" fill="none" stroke-width="2"/>
         </svg> Cronograma
       </a>
+      
+      <div class="nav-section-label">RECURSOS DEL PROYECTO</div>
+      <a href="#" class="nav-link" data-view="materiales">
+        <svg viewBox="0 0 24 24" class="icon-svg">
+          <rect x="3" y="5" width="18" height="16" stroke="currentColor" fill="none" stroke-width="2"/>
+          <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" fill="none" stroke-width="2"/>
+        </svg> Materiales 
+      </a> 
+
     </nav>
+
+
+    
+
+
+
+
 
     <div class="sidebar-footer">
       &copy; 2025 CampusBuild
@@ -174,6 +190,26 @@
         <resource-list></resource-list>
       </section>
 
+
+
+      <!-- ════════════════════════ MATERIALS ═══════════════════════ -->
+      <section id="view-materiales" class="view">
+        <div class="section-header">
+          <h1 class="section-title">Materieales</h1>
+          <button class="btn btn-primary" onclick="ResourcesModule.openNew()">
+            <svg viewBox="0 0 24 24" class="icon-svg" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"/>
+            </svg> Nuevo Material 
+          </button>
+        </div>
+        <resource-list></resource-list>
+        
+      </section>
+
+
+
+
+      
       <!-- ════════════════════════ CALENDAR ════════════════════════ -->
       <section id="view-calendar" class="view">
         <h1 class="section-title" style="margin-bottom:18px;">Cronograma de Actividades</h1>
@@ -209,6 +245,7 @@
 <script type="module" src="../js/activities.js"></script>
 <script type="module" src="../js/resources.js"></script>
 <script type="module" src="../js/calendar.js"></script>
+<script type="module" src="../js/materiales.js"></script>
 
 </body>
 </html>
