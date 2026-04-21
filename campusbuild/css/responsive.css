@@ -1,0 +1,30 @@
+/* =============================================
+   CAMPUSBUILD – Diseño responsivo
+   Contiene: media queries para pantallas
+   menores a 768px (tablets y móviles).
+   Se aplica como último módulo para que pueda
+   sobreescribir cualquier estilo previo.
+   Importado por: styles.css
+   ============================================= */
+
+@media (max-width: 768px) {
+
+  /* Oculta la sidebar en móvil (no hay espacio suficiente) */
+  :root {
+    --sidebar-w: 0px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  /* Campos de formulario en una sola columna */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Estadísticas en dos columnas en lugar de auto-fill */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,53 @@
+/* =============================================
+   CAMPUSBUILD – Reset y estilos base
+   Contiene: normalización de box-model,
+   tipografía base, elementos HTML comunes.
+   Importado por: styles.css
+   ============================================= */
+
+/* Normalización del box model en todos los elementos */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* El body y html ocupan siempre el 100% de la ventana */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Links sin decoración y con color heredado */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Listas sin bullets ni números */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Imágenes como bloque con ancho máximo */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Botones heredan la fuente del sistema y muestran cursor de puntero */
+button {
+  cursor: pointer;
+  font-family: var(--font);
+}

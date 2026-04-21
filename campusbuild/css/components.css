@@ -1,0 +1,206 @@
+/* =============================================
+   CAMPUSBUILD – Componentes de UI reutilizables
+   Contiene: botones, badges, tabla, empty-state,
+   íconos SVG y encabezados de sección.
+   Importado por: styles.css
+   ============================================= */
+
+/* ── Encabezado de sección ── */
+/* Fila con título a la izquierda y botón a la derecha */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ── Botones ── */
+
+/* Base: todos los botones comparten este estilo */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 13.5px;
+  font-weight: 600;
+  border: none;
+  transition: background var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn:active   { transform: scale(.97); }
+
+/* Botón primario (acción principal, color azul) */
+.btn-primary  { background: var(--color-primary); color: #fff; }
+.btn-primary:hover {
+  background: var(--color-primary-d);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, .35);
+}
+
+/* Botón de peligro (eliminar, color rojo) */
+.btn-danger   { background: var(--color-danger); color: #fff; }
+.btn-danger:hover { background: #b91c1c; }
+
+/* Botón fantasma (borde azul, fondo transparente) */
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn-ghost:hover { background: rgba(37, 99, 235, .08); }
+
+/* Modificador de tamaño pequeño */
+.btn-sm { padding: 5px 12px; font-size: 12.5px; }
+
+/* Estado deshabilitado */
+.btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Botón de ícono (editar/eliminar en tablas) */
+.btn-icon {
+  background: none;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--color-muted);
+  transition: background var(--transition), color var(--transition);
+}
+.btn-icon:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ── Badges (etiquetas de estado) ── */
+
+/* Base: forma de píldora redondeada */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+/* Estados de actividad */
+.badge-pending  { background: #fef3c7; color: #92400e; }  /* amarillo */
+.badge-progress { background: #dbeafe; color: #1e40af; }  /* azul */
+.badge-done     { background: #dcfce7; color: #166534; }  /* verde */
+
+/* Estados de hito */
+.badge-milestone-ok { background: #dcfce7; color: #166534; }  /* cumplido */
+.badge-milestone-no { background: #fef3c7; color: #92400e; }  /* pendiente */
+
+/* Estados de proyecto */
+.badge-project-active { background: #dbeafe; color: #1d4ed8; }  /* activo */
+.badge-project-done   { background: #dcfce7; color: #166534; }  /* terminado */
+
+/* Estado especial de fila para hitos completados */
+.milestone-row.completed td { background: #f0fdf4 !important; }
+
+/* ── Tabla de datos ── */
+
+/* Contenedor con bordes redondeados y sombra sutil */
+.table-wrap {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Cabecera: fondo tenue con texto en mayúsculas */
+thead th {
+  background: var(--color-bg);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  color: var(--color-muted);
+  padding: 11px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Celdas del cuerpo */
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+/* La última fila no necesita borde inferior */
+tbody tr:last-child td { border-bottom: none; }
+
+/* Resaltado de fila al pasar el ratón */
+tbody tr:hover { background: #f8fafc; }
+
+/* ── Estado vacío (sin datos) ── */
+/* Se muestra cuando una lista no tiene registros */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.empty-state .empty-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state p {
+  font-size: 14px;
+  max-width: 300px;
+}
+
+/* ── Íconos SVG ── */
+
+/* Tamaño base para todos los SVG del proyecto */
+.icon-svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;   /* Hereda el color del padre */
+  flex: 0 0 auto;         /* No cambia de tamaño en flexbox */
+}
+
+/* Variantes de tamaño por contexto */
+.stat-icon  .icon-svg { width: 22px; height: 22px; }
+.empty-icon .icon-svg { width: 48px; height: 48px; }
+.btn-icon   .icon-svg { width: 16px; height: 16px; }
+.badge      .icon-svg { width: 14px; height: 14px; }
+.logo-icon  .icon-svg { width: 28px; height: 28px; }
+
+/* Contenedor de ícono inline (usado en metadatos de tarjetas) */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}

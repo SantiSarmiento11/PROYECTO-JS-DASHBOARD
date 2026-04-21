@@ -1,0 +1,48 @@
+/* =============================================
+   CAMPUSBUILD – Variables y tokens de diseño
+   Contiene: custom properties globales (colores,
+   tipografía, espaciado, sombras y radios).
+   Importado por: styles.css
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de colores principales */
+  --color-primary:   #2563eb;  /* Azul principal (botones, links activos) */
+  --color-primary-d: #1d4ed8;  /* Azul oscuro (hover de primario) */
+  --color-accent:    #f59e0b;  /* Ámbar (acentos opcionales) */
+  --color-success:   #16a34a;  /* Verde (estado terminado) */
+  --color-warning:   #d97706;  /* Naranja (advertencias) */
+  --color-danger:    #dc2626;  /* Rojo (errores, eliminar) */
+
+  /* Superficies y texto */
+  --color-bg:      #f1f5f9;  /* Fondo general de la app */
+  --color-surface: #ffffff;  /* Fondo de tarjetas y modales */
+  --color-border:  #e2e8f0;  /* Bordes de componentes */
+  --color-text:    #1e293b;  /* Texto principal */
+  --color-muted:   #64748b;  /* Texto secundario o deshabilitado */
+
+  /* Sidebar */
+  --color-sidebar-bg: #1e293b;  /* Fondo del menú lateral */
+  --color-sidebar-tx: #cbd5e1;  /* Texto del menú lateral */
+  --color-sidebar-ac: #2563eb;  /* Color activo del menú lateral */
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 16px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, .08);
+  --shadow:    0 4px 12px rgba(0, 0, 0, .10);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, .14);
+
+  /* Layout */
+  --sidebar-w: 230px;
+  --topbar-h:  62px;
+
+  /* Tipografía y transiciones */
+  --font:       'Inter', sans-serif;
+  --transition: .2s ease;
+}

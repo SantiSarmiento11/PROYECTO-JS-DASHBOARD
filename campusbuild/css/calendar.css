@@ -1,0 +1,179 @@
+/* =============================================
+   CAMPUSBUILD – Calendario de actividades
+   Contiene: calendar-filter, calendar-controls,
+   calendar-grid, cal-header, cal-body, cal-day,
+   cal-event y sus variantes de color por estado.
+   Usado por el Web Component <activity-calendar>.
+   Importado por: styles.css
+   ============================================= */
+
+/* ── Barra de filtro y mes activo ── */
+
+/* Fila superior: selector de proyecto + mes actual */
+.calendar-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.calendar-filter label {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Select del filtro de proyecto */
+.calendar-filter select {
+  padding: 6px 10px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 13px;
+  background: var(--color-surface);
+  outline: none;
+}
+
+/* ── Controles de navegación (Anterior / Siguiente) ── */
+.calendar-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* ── Grilla del calendario ── */
+
+/* Contenedor principal del mes */
+.calendar-grid {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Fila de cabeceras: Dom, Lun, Mar... */
+.cal-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cal-header-cell {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--color-muted);
+}
+
+/* Cuadrícula de celdas del mes */
+.cal-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+/* ── Celda de día ── */
+.cal-day {
+  min-height: 90px;
+  padding: 6px 8px;
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  transition: background var(--transition);
+}
+
+/* La última columna de cada fila no lleva borde derecho */
+.cal-day:nth-child(7n) {
+  border-right: none;
+}
+
+/* Días de meses anterior/siguiente (atenuados) */
+.cal-day.other-month {
+  background: #f8fafc;
+}
+
+/* Día de hoy (resaltado en azul claro) */
+.cal-day.today {
+  background: #eff6ff;
+}
+
+/* Número del día */
+.cal-day-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 4px;
+}
+
+/* El número de hoy se resalta en azul */
+.cal-day.today .cal-day-num {
+  color: var(--color-primary);
+}
+
+/* ── Eventos del calendario ── */
+
+/* Base: chip compacto con texto truncado */
+.cal-event {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+
+/* Variantes de color según tipo y estado */
+
+/* Actividades */
+.cal-event.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* pendiente */
+.cal-event.en-proceso {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+/* en proceso */
+.cal-event.terminada {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* terminada */
+
+/* Proyectos (negrita para distinguirlos de las actividades) */
+.cal-event.project-active {
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+.cal-event.project-done {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: 700;
+}
+
+/* Hitos (borde lateral de color para resaltarlos) */
+.cal-event.milestone-pending {
+  background: #fef3c7;
+  color: #92400e;
+  border-left: 3px solid #d97706;
+}
+
+.cal-event.milestone-done {
+  background: #dcfce7;
+  color: #166534;
+  border-left: 3px solid #16a34a;
+}

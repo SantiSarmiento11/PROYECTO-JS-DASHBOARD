@@ -1,0 +1,49 @@
+/* =============================================
+   CAMPUSBUILD – Dashboard (tarjetas de estadísticas)
+   Contiene: stat-grid y stat-card usados por el
+   Web Component <dashboard-stats>.
+   Importado por: styles.css
+   ============================================= */
+
+/* Cuadrícula adaptable de tarjetas de resumen */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* Tarjeta individual de indicador (KPI) */
+.stat-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Número grande de la métrica */
+.stat-card .stat-value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Descripción de la métrica (ej. "Actividades") */
+.stat-card .stat-label {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+/* Ícono decorativo en la parte superior de la tarjeta */
+.stat-card .stat-icon {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

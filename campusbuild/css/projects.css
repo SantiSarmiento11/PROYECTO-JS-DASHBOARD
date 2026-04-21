@@ -1,0 +1,82 @@
+/* =============================================
+   CAMPUSBUILD – Tarjetas de proyecto
+   Contiene: project-cards (grilla), project-card
+   y todos sus elementos internos.
+   Usado por el Web Component <project-list>.
+   Importado por: styles.css
+   ============================================= */
+
+/* Grilla responsiva de tarjetas */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+/* Tarjeta individual de proyecto */
+.project-card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+/* Efecto de elevación al pasar el ratón */
+.project-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+/* Fila superior: nombre/estado a la izquierda, botones a la derecha */
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Nombre del proyecto acompañado del ícono */
+.project-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Badge de estado (Activo / Terminado) */
+.project-card-status { margin-top: 8px; }
+
+/* Descripción del proyecto (texto secundario) */
+.project-card-desc {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+/* Fila de metadatos: fechas, conteos de actividades e hitos */
+.project-card-meta {
+  display: flex;
+  gap: 14px;
+  font-size: 12px;
+  color: var(--color-muted);
+  flex-wrap: wrap;
+}
+
+/* Cada item de metadata con ícono alineado */
+.project-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Botones de acción en la parte inferior de la tarjeta */
+.project-card-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}

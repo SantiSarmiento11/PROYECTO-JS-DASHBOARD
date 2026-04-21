@@ -1,0 +1,163 @@
+/* =============================================
+   CAMPUSBUILD – Layout principal
+   Contiene: app-shell (contenedor raíz),
+   sidebar (menú lateral), main-area,
+   topbar (barra superior) y page-content.
+   Importado por: styles.css
+   ============================================= */
+
+/* ── Contenedor raíz de la aplicación ── */
+/* Divide la pantalla en sidebar + área principal */
+.app-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ── Sidebar (menú lateral) ── */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--color-sidebar-bg);
+  color: var(--color-sidebar-tx);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;    /* No se encoge aunque haya poco espacio */
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* Logo y nombre de la app en la parte superior del sidebar */
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 20px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.sidebar-logo .logo-icon {
+  width: 34px;
+  height: 34px;
+  background: var(--color-primary);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.sidebar-logo span {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: .3px;
+}
+
+.sidebar-logo small {
+  font-size: 10px;
+  color: var(--color-sidebar-tx);
+  opacity: .6;
+  display: block;
+}
+
+/* Área de navegación: ocupa todo el espacio disponible */
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+}
+
+/* Etiqueta de sección dentro del menú (ej. "GESTIÓN") */
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .3);
+  padding: 14px 20px 6px;
+}
+
+/* Enlace de navegación individual */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  color: var(--color-sidebar-tx);
+  font-size: 13.5px;
+  font-weight: 500;
+  border-left: 3px solid transparent;  /* Indicador activo */
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+}
+
+/* Estado activo: resalta con borde azul y fondo semitransparente */
+.nav-link.active {
+  background: rgba(37, 99, 235, .25);
+  border-left-color: var(--color-primary);
+  color: #fff;
+}
+
+.nav-link .icon {
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+/* Pie del sidebar con versión o créditos */
+.sidebar-footer {
+  padding: 16px 20px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  font-size: 12px;
+  color: rgba(255, 255, 255, .3);
+}
+
+/* ── Área principal (topbar + contenido) ── */
+.main-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Topbar (barra superior) ── */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 16px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Título principal de la página actual */
+.topbar-title {
+  font-size: 17px;
+  font-weight: 700;
+  flex: 1;
+}
+
+/* Subtítulo o descripción breve de la página */
+.topbar-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/* ── Área de contenido desplazable ── */
+.page-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px;
+}
+
+/* ── Vistas (páginas cargadas dinámicamente) ── */
+/* Solo la vista con clase .active es visible */
+.view        { display: none;  }
+.view.active { display: block; }
