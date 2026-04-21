@@ -1,9 +1,20 @@
+/**
+ * resources-page.js — Inicializador de la página de Recursos Humanos
+ *
+ * Conecta el shell del modal y el botón "Nuevo Recurso".
+ * Importa: ui.js, resources-view.js (registra <resource-list>), resources-form.js
+ * Exporta: initResourcesPage
+ * Llamado desde: index.js (boot)
+ */
+
 import { initAppShell } from '../core/ui.js';
 import './resources-view.js';
 import { openNew } from './resources-form.js';
 
 /**
- * Conecta la página de recursos con el shell y el botón principal.
+ * Inicializa la página de recursos humanos.
+ * Verifica que exista <resource-list> antes de continuar.
+ * → Llamado automáticamente por index.js cuando el DOM está listo.
  */
 export function initResourcesPage() {
   if (!document.querySelector('resource-list')) return;

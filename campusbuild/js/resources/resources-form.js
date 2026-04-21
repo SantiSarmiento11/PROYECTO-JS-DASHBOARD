@@ -1,12 +1,25 @@
+/**
+ * resources-form.js — Formulario CRUD de recursos humanos
+ *
+ * Gestiona la creación, edición y eliminación de recursos humanos.
+ * Importa: storage.js, utils.js, ui.js
+ * Exporta: openNew, openEdit, confirmDelete
+ * Usado por: resources-page.js, resources-view.js, index.js (re-export al dashboard)
+ */
+
 import Storage from '../core/storage.js';
 import { escapeHtml } from '../core/utils.js';
 import { showToast, openModal, closeModal } from '../core/ui.js';
 
+// ─── HTML del formulario ─────────────────────────────────────────────────────
+
 /**
- * Renderiza el formulario de recurso con valores actuales o vacíos.
+ * Genera el formulario de recurso humano con los campos requeridos.
+ * @param {object} [resource={}] - Datos del recurso existente (vacío para nuevo)
+ * @returns {string} HTML del formulario
  */
 function buildResourceForm(resource = {}) {
-  const roles = ['Ingeniero', 'Arquitecto', 'Supervisor', 'Operario', 'Electricista', 'Plomero', 'Otro'];
+  const roles      = ['Ingeniero', 'Arquitecto', 'Supervisor', 'Operario', 'Electricista', 'Plomero', 'Otro'];
   const bloodTypes = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
 
   return `
@@ -28,7 +41,7 @@ function buildResourceForm(resource = {}) {
       <div class="form-group">
         <label class="form-label">Tipo de Sangre *</label>
         <select id="res-sangre" class="form-control">
-          ${bloodTypes.map(type => `<option value="${type}" ${resource.tipoSangre === type ? 'selected' : ''}>${type}</option>`).join('')}
+          ${bloodTypes.map(t => `<option value="${t}" ${resource.tipoSangre === t ? 'selected' : ''}>${t}</option>`).join('')}
         </select>
       </div>
     </div>
@@ -42,9 +55,9 @@ function buildResourceForm(resource = {}) {
         <select id="res-genero" class="form-control">
           <option value="">No especificar</option>
           <option value="Masculino" ${resource.genero === 'Masculino' ? 'selected' : ''}>Masculino</option>
-          <option value="Femenino" ${resource.genero === 'Femenino' ? 'selected' : ''}>Femenino</option>
-          <option value="No binario" ${resource.genero === 'No binario' ? 'selected' : ''}>No binario</option>
-          <option value="Otro" ${resource.genero === 'Otro' ? 'selected' : ''}>Otro</option>
+          <option value="Femenino"  ${resource.genero === 'Femenino'  ? 'selected' : ''}>Femenino</option>
+          <option value="No binario"${resource.genero === 'No binario'? 'selected' : ''}>No binario</option>
+          <option value="Otro"      ${resource.genero === 'Otro'      ? 'selected' : ''}>Otro</option>
         </select>
       </div>
     </div>
@@ -56,49 +69,58 @@ function buildResourceForm(resource = {}) {
       <div class="form-group">
         <label class="form-label">Rol *</label>
         <select id="res-rol" class="form-control">
-          ${roles.map(role => `<option value="${role}" ${resource.rol === role ? 'selected' : ''}>${role}</option>`).join('')}
+          ${roles.map(r => `<option value="${r}" ${resource.rol === r ? 'selected' : ''}>${r}</option>`).join('')}
         </select>
       </div>
     </div>`;
 }
 
+// ─── Apertura de modales ─────────────────────────────────────────────────────
+
 /**
- * Abre el formulario para crear un recurso humano.
+ * Abre el modal para crear un nuevo recurso humano.
+ * → Llamado desde resources-page.js y dashboard-page.js (vía index.js).
  */
 export function openNew() {
   openModal({
-    title: 'Nuevo Recurso Humano',
-    body: buildResourceForm(),
+    title : 'Nuevo Recurso Humano',
+    body  : buildResourceForm(),
     onSave: () => saveResource(null)
   });
 }
 
 /**
- * Abre el formulario de edición de un recurso existente.
+ * Abre el modal de edición con los datos del recurso indicado.
+ * → Llamado desde resources-view.js al hacer clic en Editar.
+ * @param {string} id - ID del recurso a editar
  */
 export function openEdit(id) {
   const resource = Storage.getById('resources', id);
   if (!resource) return;
-
   openModal({
-    title: 'Editar Recurso Humano',
-    body: buildResourceForm(resource),
+    title : 'Editar Recurso Humano',
+    body  : buildResourceForm(resource),
     onSave: () => saveResource(id)
   });
 }
 
+// ─── Guardar y eliminar ──────────────────────────────────────────────────────
+
 /**
- * Valida y guarda un recurso en localStorage.
+ * Lee el formulario, valida y guarda el recurso (nuevo o existente).
+ * Refresca el componente <resource-list> al terminar.
+ * → Llamado internamente desde openNew y openEdit.
+ * @param {string|null} id - ID para actualizar, null para insertar
  */
 function saveResource(id) {
   const identificacion = document.getElementById('res-id').value.trim();
-  const nombre = document.getElementById('res-nombre').value.trim();
-  const fechaNacimiento = document.getElementById('res-fnac').value;
-  const tipoSangre = document.getElementById('res-sangre').value;
-  const arl = document.getElementById('res-arl').value.trim();
-  const genero = document.getElementById('res-genero').value;
-  const salario = parseFloat(document.getElementById('res-salario').value);
-  const rol = document.getElementById('res-rol').value;
+  const nombre         = document.getElementById('res-nombre').value.trim();
+  const fechaNacimiento= document.getElementById('res-fnac').value;
+  const tipoSangre     = document.getElementById('res-sangre').value;
+  const arl            = document.getElementById('res-arl').value.trim();
+  const genero         = document.getElementById('res-genero').value;
+  const salario        = parseFloat(document.getElementById('res-salario').value);
+  const rol            = document.getElementById('res-rol').value;
 
   if (!identificacion || !nombre || !fechaNacimiento || !arl || !salario || !rol) {
     showToast('Completa todos los campos requeridos.', 'danger');
@@ -106,6 +128,7 @@ function saveResource(id) {
   }
 
   const data = { identificacion, nombre, fechaNacimiento, tipoSangre, arl, genero, salario, rol };
+
   if (id) {
     Storage.update('resources', id, data);
     showToast('Recurso actualizado.', 'success');
@@ -119,18 +142,20 @@ function saveResource(id) {
 }
 
 /**
- * Confirma la eliminación de un recurso y actualiza la tabla.
+ * Muestra confirmación y elimina el recurso si el usuario acepta.
+ * → Llamado desde resources-view.js al hacer clic en Eliminar.
+ * @param {string} id - ID del recurso a eliminar
  */
 export function confirmDelete(id) {
   const resource = Storage.getById('resources', id);
   if (!resource) return;
 
   openModal({
-    title: 'Eliminar Recurso',
-    body: `<p>¿Eliminar a <strong>${escapeHtml(resource.nombre)}</strong>?</p>`,
+    title    : 'Eliminar Recurso',
+    body     : `<p>¿Eliminar a <strong>${escapeHtml(resource.nombre)}</strong>?</p>`,
     saveLabel: 'Eliminar',
-    saveCls: 'btn-danger',
-    onSave: () => {
+    saveCls  : 'btn-danger',
+    onSave   : () => {
       Storage.remove('resources', id);
       closeModal();
       document.querySelector('resource-list')?.render();

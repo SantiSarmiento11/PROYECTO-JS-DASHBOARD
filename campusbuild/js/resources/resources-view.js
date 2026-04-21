@@ -1,30 +1,41 @@
+/**
+ * resources-view.js — Web Component <resource-list>
+ *
+ * Muestra la tabla de recursos humanos con acciones de edición y borrado.
+ * Importa: storage.js, utils.js, ui.js, resources-form.js
+ */
+
 import Storage from '../core/storage.js';
 import { escapeHtml, formatDate } from '../core/utils.js';
 import { icon } from '../core/ui.js';
 import { confirmDelete, openEdit } from './resources-form.js';
 
 /**
- * Tabla principal de recursos humanos con acciones CRUD.
+ * Web Component que muestra la lista de recursos humanos en una tabla.
+ * Expone `render()` para que resources-form.js lo refresque desde fuera.
  */
 class ResourceList extends HTMLElement {
+  /**
+   * Al insertarse en el DOM, registra el listener de clics una vez y renderiza.
+   */
   connectedCallback() {
     if (!this.dataset.bound) {
       this.dataset.bound = 'true';
+      // Delegación de eventos: un solo listener para todos los botones de la tabla
       this.addEventListener('click', event => {
-        const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
-
-        const { action, resourceId } = actionButton.dataset;
-        if (action === 'edit') openEdit(resourceId);
+        const btn = event.target.closest('[data-action]');
+        if (!btn) return;
+        const { action, resourceId } = btn.dataset;
+        if (action === 'edit')   openEdit(resourceId);
         if (action === 'delete') confirmDelete(resourceId);
       });
     }
-
     this.render();
   }
 
   /**
-   * Dibuja la tabla de recursos o el estado vacío si no hay datos.
+   * Construye y pinta la tabla de recursos o muestra el estado vacío.
+   * → Llamado en connectedCallback y desde resources-form.js tras guardar/eliminar.
    */
   render() {
     const resources = Storage.getAll('resources');
@@ -54,18 +65,21 @@ class ResourceList extends HTMLElement {
             </tr>
           </thead>
           <tbody>
-            ${resources.map(resource => `
+            ${resources.map(r => `
               <tr>
-                <td>${escapeHtml(resource.identificacion)}</td>
-                <td><strong>${escapeHtml(resource.nombre)}</strong>${resource.genero ? `<br><small style="color:var(--color-muted)">${escapeHtml(resource.genero)}</small>` : ''}</td>
-                <td><span style="background:var(--color-bg);padding:2px 8px;border-radius:4px;font-size:12px;">${escapeHtml(resource.rol)}</span></td>
-                <td>${formatDate(resource.fechaNacimiento)}</td>
-                <td><span style="font-weight:700;color:var(--color-danger);">${escapeHtml(resource.tipoSangre)}</span></td>
-                <td>${escapeHtml(resource.arl)}</td>
-                <td>$${Number(resource.salario || 0).toLocaleString('es-CO')}</td>
+                <td>${escapeHtml(r.identificacion)}</td>
+                <td>
+                  <strong>${escapeHtml(r.nombre)}</strong>
+                  ${r.genero ? `<br><small style="color:var(--color-muted)">${escapeHtml(r.genero)}</small>` : ''}
+                </td>
+                <td><span style="background:var(--color-bg);padding:2px 8px;border-radius:4px;font-size:12px;">${escapeHtml(r.rol)}</span></td>
+                <td>${formatDate(r.fechaNacimiento)}</td>
+                <td><span style="font-weight:700;color:var(--color-danger);">${escapeHtml(r.tipoSangre)}</span></td>
+                <td>${escapeHtml(r.arl)}</td>
+                <td>$${Number(r.salario || 0).toLocaleString('es-CO')}</td>
                 <td style="display:flex;gap:4px;align-items:center;">
-                  <button class="btn-icon" title="Editar" aria-label="Editar" data-action="edit" data-resource-id="${resource.id}">${icon('edit')}</button>
-                  <button class="btn-icon" title="Eliminar" aria-label="Eliminar" data-action="delete" data-resource-id="${resource.id}">${icon('trash')}</button>
+                  <button class="btn-icon" title="Editar"   aria-label="Editar"   data-action="edit"   data-resource-id="${r.id}">${icon('edit')}</button>
+                  <button class="btn-icon" title="Eliminar" aria-label="Eliminar" data-action="delete" data-resource-id="${r.id}">${icon('trash')}</button>
                 </td>
               </tr>`).join('')}
           </tbody>

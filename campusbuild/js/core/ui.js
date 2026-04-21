@@ -1,4 +1,16 @@
+/**
+ * ui.js — Componentes de interfaz compartidos (modal, toasts, íconos)
+ *
+ * Exporta: icon, showToast, openModal, closeModal, initAppShell
+ * Usado por: todos los módulos de formularios y páginas
+ */
+
+// ─── Estado interno ────────────────────────────────────────────────────────────
+
+/** Guarda la función `onSave` del modal activo para ejecutarla al confirmar. */
 let currentOnSave = null;
+
+// ─── Íconos SVG ───────────────────────────────────────────────────────────────
 
 const ICONS = {
   project: `
@@ -56,15 +68,33 @@ const ICONS = {
     </svg>`
 };
 
+// ─── Funciones públicas ───────────────────────────────────────────────────────
+
+/**
+ * Devuelve el SVG del ícono solicitado, con clase CSS opcional adicional.
+ * → Usado en todos los módulos que renderizan HTML dinámico.
+ * @param {string} name - Clave del ícono en ICONS
+ * @param {string} [extraClass] - Clase CSS adicional a agregar al SVG
+ * @returns {string} HTML del SVG o cadena vacía si no existe
+ */
 export function icon(name, extraClass = '') {
   const markup = ICONS[name];
   if (!markup) return '';
-  return extraClass ? markup.replace('class="icon-svg"', `class="icon-svg ${extraClass}"`) : markup;
+  return extraClass
+    ? markup.replace('class="icon-svg"', `class="icon-svg ${extraClass}"`)
+    : markup;
 }
 
+/**
+ * Muestra una notificación temporal en pantalla (toast).
+ * → Llamado desde cualquier módulo después de guardar/eliminar datos.
+ * @param {string} message - Texto a mostrar
+ * @param {string} [type] - 'success' | 'danger' (agrega clase CSS al toast)
+ */
 export function showToast(message, type = '') {
   const container = document.getElementById('toast-container');
   if (!container) return;
+
   const toast = document.createElement('div');
   toast.className = `toast${type ? ` toast-${type}` : ''}`;
   toast.textContent = message;
@@ -72,6 +102,17 @@ export function showToast(message, type = '') {
   setTimeout(() => toast.remove(), 3200);
 }
 
+/**
+ * Abre el modal global con el contenido y comportamiento indicados.
+ * → Llamado desde los formularios de proyectos, actividades, hitos y recursos.
+ * @param {object} options
+ * @param {string}   options.title      - Título del modal
+ * @param {string}   options.body       - HTML del cuerpo del modal
+ * @param {Function} options.onSave     - Acción al confirmar (botón Guardar)
+ * @param {string}   [options.saveLabel]- Texto del botón de acción (default: 'Guardar')
+ * @param {string}   [options.saveCls]  - Clase CSS del botón (default: 'btn-primary')
+ * @param {Function} [options.onOpen]   - Callback ejecutado tras renderizar el cuerpo
+ */
 export function openModal({ title, body, onSave, saveLabel = 'Guardar', saveCls = 'btn-primary', onOpen }) {
   document.getElementById('modal-title').textContent = title;
   document.getElementById('modal-body').innerHTML = body;
@@ -82,11 +123,21 @@ export function openModal({ title, body, onSave, saveLabel = 'Guardar', saveCls 
   if (typeof onOpen === 'function') onOpen();
 }
 
+/**
+ * Cierra el modal global y limpia la acción de guardado activa.
+ * → Llamado desde botones de cierre y tras completar un guardado.
+ */
 export function closeModal() {
   document.getElementById('modal-backdrop').classList.remove('open');
   currentOnSave = null;
 }
 
+/**
+ * Registra los listeners del modal y el botón de guardado.
+ * Solo se ejecuta una vez gracias a `data-bound`.
+ * → Llamado desde `initDashboardPage`, `initProjectsPage`,
+ *   `initActivitiesPage` e `initResourcesPage`.
+ */
 export function initAppShell() {
   const backdrop = document.getElementById('modal-backdrop');
   if (!backdrop || backdrop.dataset.bound === 'true') return;

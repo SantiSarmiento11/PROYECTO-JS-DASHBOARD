@@ -1,10 +1,19 @@
+/**
+ * projects-view.js — Web Component <project-list> y función de refresco
+ *
+ * Muestra las tarjetas de proyectos con estado, progreso y acciones.
+ * Importa: storage.js, utils.js, ui.js, projects-form.js
+ * Exporta: refreshProjectViews (usado por projects-form.js)
+ */
+
 import Storage from '../core/storage.js';
 import { getProjectCompletion, syncProjectStatus, formatDate, escapeHtml } from '../core/utils.js';
 import { icon } from '../core/ui.js';
 import { confirmDelete, finishProject, openEdit } from './projects-form.js';
 
 /**
- * Refresca las vistas que dependen del estado actual de los proyectos.
+ * Repinta todos los Web Components que dependen del estado de proyectos.
+ * → Llamado desde projects-form.js después de guardar, eliminar o finalizar.
  */
 export function refreshProjectViews() {
   document.querySelector('project-list')?.render();
@@ -13,31 +22,36 @@ export function refreshProjectViews() {
 }
 
 /**
- * Lista visual de proyectos y sus acciones principales.
+ * Web Component que muestra tarjetas de proyecto con estado y acciones.
+ * Expone `render()` para que refreshProjectViews lo refresque desde fuera.
  */
 class ProjectList extends HTMLElement {
+  /**
+   * Al insertarse en el DOM, registra el listener de clics una vez y renderiza.
+   */
   connectedCallback() {
     if (!this.dataset.bound) {
       this.dataset.bound = 'true';
+      // Delegación de eventos: un listener por componente para todos los botones
       this.addEventListener('click', event => {
-        const actionButton = event.target.closest('[data-action]');
-        if (!actionButton) return;
-
-        const { action, projectId } = actionButton.dataset;
-        if (action === 'edit') openEdit(projectId);
+        const btn = event.target.closest('[data-action]');
+        if (!btn) return;
+        const { action, projectId } = btn.dataset;
+        if (action === 'edit')   openEdit(projectId);
         if (action === 'delete') confirmDelete(projectId);
         if (action === 'finish') finishProject(projectId);
       });
     }
-
     this.render();
   }
 
   /**
-   * Pinta las tarjetas de proyecto con su estado y resumen.
+   * Dibuja las tarjetas de proyecto con barra de progreso, fechas y acciones.
+   * Sincroniza el estado de cada proyecto antes de renderizarlo.
+   * → Llamado en connectedCallback y desde refreshProjectViews.
    */
   render() {
-    const projects = Storage.getAll('projects');
+    const projects   = Storage.getAll('projects');
     const activities = Storage.getAll('activities');
 
     if (!projects.length) {
@@ -52,11 +66,12 @@ class ProjectList extends HTMLElement {
     this.innerHTML = `
       <div class="project-cards">
         ${projects.map(project => {
-          const current = syncProjectStatus(project.id) || project;
-          const projectActivities = activities.filter(activity => activity.projectId === project.id);
-          const completedActivities = projectActivities.filter(activity => activity.estado === 'terminada').length;
-          const summary = getProjectCompletion(project.id);
-          const isFinished = current.estado === 'terminado';
+          // syncProjectStatus revierte a 'activo' si el proyecto ya no cumple requisitos
+          const current            = syncProjectStatus(project.id) || project;
+          const projectActivities  = activities.filter(a => a.projectId === project.id);
+          const completedActivities= projectActivities.filter(a => a.estado === 'terminada').length;
+          const summary            = getProjectCompletion(project.id);
+          const isFinished         = current.estado === 'terminado';
 
           return `
             <div class="project-card">
@@ -68,7 +83,7 @@ class ProjectList extends HTMLElement {
                   </div>
                 </div>
                 <div style="display:flex;gap:4px;">
-                  <button class="btn-icon" title="Editar" aria-label="Editar" data-action="edit" data-project-id="${current.id}">${icon('edit')}</button>
+                  <button class="btn-icon" title="Editar"   aria-label="Editar"   data-action="edit"   data-project-id="${current.id}">${icon('edit')}</button>
                   <button class="btn-icon" title="Eliminar" aria-label="Eliminar" data-action="delete" data-project-id="${current.id}">${icon('trash')}</button>
                 </div>
               </div>
