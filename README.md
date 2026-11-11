@@ -71,3 +71,7 @@ PROYECTO-JS-DASHBOARD/
         ├── resources.js         # Gestion de personal operativo y contratistas
         └── calendar.js          # Renderizado de cronograma mensual y visualizacion de fechas
 ```
+
+## Stack Tecnologico
+
+El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de compiladores o dependencias externas pesadas.
