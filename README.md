@@ -51,3 +51,23 @@ flowchart TD
     H --> J[Actualizador de Metricas y Dashboard KPIs]
     J --> A
 ```
+
+### Estructura de Directorios
+
+```text
+PROYECTO-JS-DASHBOARD/
+├── README.md                    # Documentacion tecnica integral
+└── campusbuild/
+    ├── css/
+    │   └── styles.css           # Diseno visual, variables globales y grillas responsivas
+    ├── html/
+    │   └── index.html           # Documento principal y contenedor de vistas dinamicas
+    └── js/
+        ├── app.js               # Punto de entrada, inicializador y manejador global de eventos
+        ├── storage.js           # Repositorio de persistencia y serializacion LocalStorage
+        ├── projects.js          # Logica empresarial de creacion y estado de proyectos
+        ├── activities.js        # Administracion de tareas, checklist y estados de ejecucion
+        ├── materiales.js        # Control de insumos, entradas, salidas y alertas de stock
+        ├── resources.js         # Gestion de personal operativo y contratistas
+        └── calendar.js          # Renderizado de cronograma mensual y visualizacion de fechas
+```
