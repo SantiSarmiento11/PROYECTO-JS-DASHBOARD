@@ -152,3 +152,10 @@ El ciclo operativo cubre todo el flujo de gestion de obra:
 3. Registro de nuevas obras mediante modal interactivo con validacion de campos requeridos.
 4. Vinculacion de tareas especificas asociadas al proyecto en curso.
 5. Modificacion de consumos de material con actualizacion dinamica del balance de inventario.
+
+### Modulos Funcionales de la Interfaz
+
+- **Panel de Proyectos**: Creacion, edicion de alcance, presupuesto estimado y cambio de estado.
+- **Modulo de Actividades**: Kanban o lista de actividades con estado (Pendiente, En Progreso, Bloqueada, Terminada).
+- **Control de Insumos**: Formulario de recepcion y despacho de materiales de obra (cemento, acero, arena, etc.).
+- **Calendario Operativo**: Mapa mensual con indicadores visuales de hitos y fechas clave de entrega.
