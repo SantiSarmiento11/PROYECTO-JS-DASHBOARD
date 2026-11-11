@@ -75,3 +75,9 @@ PROYECTO-JS-DASHBOARD/
 ## Stack Tecnologico
 
 El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de compiladores o dependencias externas pesadas.
+
+### Logica y Persistencia de Datos
+
+- ![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) Sintaxis moderna con modulos, promesas y funciones flecha.
+- ![Web Storage](https://img.shields.io/badge/LocalStorage_Persistence-0052CC?style=for-the-badge&logo=googlechrome&logoColor=white) Almacenamiento semi-permanente local con serializacion JSON.
+- ![JSON](https://img.shields.io/badge/JSON_Format-000000?style=for-the-badge&logo=json&logoColor=white) Formato de intercambio de objetos de datos estructurados.
