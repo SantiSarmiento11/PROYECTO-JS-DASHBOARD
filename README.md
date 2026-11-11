@@ -87,3 +87,8 @@ El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de 
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) Estructura semantica con soporte de modales y formularios validados.
 - ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) Hojas de estilo estructuradas con CSS Grid y Flexbox adaptativo.
 - ![Google Fonts](https://img.shields.io/badge/Google_Fonts-4285F4?style=for-the-badge&logo=googlefonts&logoColor=white) Tipografia tecnica y moderna para lectura clara de datos numericos.
+
+### APIs Nativas del Navegador Web
+
+- **DOM Manipulation API**: Renderizado dinamico reactivo de tablas, tarjetas y paneles.
+- **Date and Time API**: Calculo de duraciones, vencimientos y coloreado condicional de tareas atrasadas.
