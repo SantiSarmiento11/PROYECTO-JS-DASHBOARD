@@ -215,3 +215,8 @@ Cada transaccion relevante (creacion de actividad, modificacion de stock o cambi
 El sistema puede alojarse inmediatamente en cualquier servicio de hosting estatico de alta disponibilidad:
 - **GitHub Pages** (directorio `campusbuild/` como raiz del sitio).
 - **Servidores Apache / Nginx** sirviendo los archivos estaticos con cabeceras de compresion Gzip activadas.
+
+## Optimizacion de Rendimiento
+
+- Renderizado incremental del DOM actualizando unicamente las filas o tarjetas modificadas en lugar de repintar la vista completa.
+- Almacenamiento optimizado de identificadores para busquedas directas por indexacion O(1) en mapas en memoria.
