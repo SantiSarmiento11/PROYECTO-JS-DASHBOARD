@@ -204,3 +204,8 @@ npx eslint campusbuild/js/*.js
 ## Registro de Auditoria Local
 
 Cada transaccion relevante (creacion de actividad, modificacion de stock o cambio de fase de obra) emite un registro con marca de tiempo visible en las herramientas de desarrollo del navegador (`console.info`).
+
+## Consideraciones de Seguridad
+
+- Todas las inserciones en la interfaz utilizan metodos seguros de asignacion de texto o construccion de nodos DOM controlados, previniendo vulnerabilidades de Cross-Site Scripting (XSS).
+- Al no depender de comunicaciones hacia APIs de terceros no verificadas, la privacidad de los datos de costos y materiales se preserva de forma local en la maquina del operador.
