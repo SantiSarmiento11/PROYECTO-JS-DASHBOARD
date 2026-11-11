@@ -187,3 +187,9 @@ Estructura del objeto JSON almacenado para cada entidad:
 
 - Los metodos de `storage.js` estan encapsulados en bloques `try...catch`.
 - En caso de exceder la cuota permitida de `localStorage` (generalmente 5 MB por dominio), la aplicacion captura `QuotaExceededError` y despliega una notificacion clara solicitando depuracion o exportacion de historicos.
+
+## Estrategia de Pruebas y Aseguramiento de Calidad
+
+- Pruebas unitarias sobre los calculos de progreso y porcentaje de cumplimiento de hitos.
+- Pruebas de persistencia comprobando que al recargar la pagina o reiniciar la sesion los datos permanezcan intactos.
+- Validacion cruzada en resoluciones moviles y pantallas de alta densidad.
