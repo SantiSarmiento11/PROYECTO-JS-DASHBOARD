@@ -19,3 +19,15 @@ La industria de la construccion demanda una coordinacion milimetrica entre crono
 - Gestion y consumo de inventario de materiales con alertas visuales de nivel critico de existencias.
 - Calendario interactivo de hitos y plazos de entrega para directores y residentes de obra.
 - Cuadro de mando (Dashboard) con indicadores cuantitativos y metricas de avance en tiempo real.
+
+## Arquitectura del Sistema
+
+CampusBuild esta disenado bajo un patron arquitectonico modular en JavaScript puro (Vanilla JS):
+1. Capa de Persistencia y Acceso a Datos (`storage.js`):
+   Encapsula las operaciones de lectura, escritura y serializacion sobre la API de `localStorage`.
+2. Capa de Modelos y Controladores de Dominio (`projects.js`, `activities.js`, `materiales.js`, `resources.js`, `calendar.js`):
+   Contiene las reglas de negocio, validaciones y calculo de estados de cada entidad.
+3. Capa de Orquestacion y Enlace (`app.js`):
+   Coordina la inicializacion, eventos de interfaz y actualizacion sincronizada de vistas.
+4. Capa de Presentacion (`index.html`, `styles.css`):
+   Estructura visual reactiva con retroalimentacion inmediata al usuario.
