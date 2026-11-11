@@ -81,3 +81,9 @@ El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de 
 - ![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) Sintaxis moderna con modulos, promesas y funciones flecha.
 - ![Web Storage](https://img.shields.io/badge/LocalStorage_Persistence-0052CC?style=for-the-badge&logo=googlechrome&logoColor=white) Almacenamiento semi-permanente local con serializacion JSON.
 - ![JSON](https://img.shields.io/badge/JSON_Format-000000?style=for-the-badge&logo=json&logoColor=white) Formato de intercambio de objetos de datos estructurados.
+
+### Maquetacion y Diseno de Interfaz
+
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) Estructura semantica con soporte de modales y formularios validados.
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) Hojas de estilo estructuradas con CSS Grid y Flexbox adaptativo.
+- ![Google Fonts](https://img.shields.io/badge/Google_Fonts-4285F4?style=for-the-badge&logo=googlefonts&logoColor=white) Tipografia tecnica y moderna para lectura clara de datos numericos.
