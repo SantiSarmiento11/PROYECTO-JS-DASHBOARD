@@ -110,3 +110,16 @@ El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de 
 | `cb_activities` | Array de Objetos | Listado detallado de tareas con fechas y responsables |
 | `cb_materials` | Array de Objetos | Catalogo de materiales, existencias actuales y umbrales minimos |
 | `cb_resources` | Array de Objetos | Registro de empleados, oficios y asignaciones activas |
+
+## Guia de Instalacion y Despliegue Local
+
+1. Clonar el repositorio localmente:
+```bash
+git clone https://github.com/SantiSarmiento11/PROYECTO-JS-DASHBOARD.git
+cd PROYECTO-JS-DASHBOARD
+```
+
+2. Ingresar a la carpeta de la aplicacion:
+```bash
+cd campusbuild
+```
