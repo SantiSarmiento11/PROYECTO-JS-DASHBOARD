@@ -92,3 +92,12 @@ El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de 
 
 - **DOM Manipulation API**: Renderizado dinamico reactivo de tablas, tarjetas y paneles.
 - **Date and Time API**: Calculo de duraciones, vencimientos y coloreado condicional de tareas atrasadas.
+
+## Requisitos Previos del Sistema
+
+- Navegador web compatible con estandares ECMAScript 2015 (ES6) y Web Storage:
+  - Google Chrome 80 o superior
+  - Mozilla Firefox 75 o superior
+  - Microsoft Edge 80 o superior
+  - Safari 13 o superior
+- No se requiere instalacion previa de Node.js o servidores de base de datos SQL.
