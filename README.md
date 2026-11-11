@@ -123,3 +123,11 @@ cd PROYECTO-JS-DASHBOARD
 ```bash
 cd campusbuild
 ```
+
+### Verificacion de Integridad de Modulos
+
+Validar que los archivos JavaScript de dominio esten presentes:
+```bash
+ls -l js/
+```
+No se requieren comandos de construccion como `npm install` o `npm run build`.
