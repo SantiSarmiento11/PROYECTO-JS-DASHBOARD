@@ -11,3 +11,11 @@ Plataforma web tipo Single Page Application (SPA) para la administracion integra
 ## Resumen Ejecutivo
 
 La industria de la construccion demanda una coordinacion milimetrica entre cronogramas de obra, suministro de insumos criticos y disponibilidad de personal calificado. CampusBuild soluciona esta problematica operativa proveyendo un centro de control ligero, rapido y sin dependencias de infraestructura de backend compleja. Su almacenamiento local en el navegador permite una adopcion inmediata en campo o puestos de control de obra con conectividad limitada.
+
+## Alcance y Objetivos de Negocio
+
+- Registro y seguimiento de ciclo de vida de proyectos constructivos (Planificacion, En Curso, Pausado, Finalizado).
+- Desglose de actividades operativas con responsables asignados, fechas limite y estados de cumplimiento.
+- Gestion y consumo de inventario de materiales con alertas visuales de nivel critico de existencias.
+- Calendario interactivo de hitos y plazos de entrega para directores y residentes de obra.
+- Cuadro de mando (Dashboard) con indicadores cuantitativos y metricas de avance en tiempo real.
