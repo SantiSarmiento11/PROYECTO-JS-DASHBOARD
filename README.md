@@ -235,3 +235,7 @@ El sistema puede alojarse inmediatamente en cualquier servicio de hosting estati
 2. Crear una rama de desarrollo (`git checkout -b feature/modulo-alertas-presupuesto`).
 3. Registrar cambios aplicando el estandar de Conventional Commits (`git commit -m 'feat: adicionar alertas de sobrecosto presupuestario'`).
 4. Realizar push de la rama y abrir un Pull Request para revision tecnica.
+
+## Autoria y Creditos del Proyecto
+
+Desarrollado y mantenido por [Santiago Sarmiento](https://github.com/SantiSarmiento11) para optimizar la direccion y control de proyectos de construccion e infraestructura civil.
