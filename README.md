@@ -193,3 +193,10 @@ Estructura del objeto JSON almacenado para cada entidad:
 - Pruebas unitarias sobre los calculos de progreso y porcentaje de cumplimiento de hitos.
 - Pruebas de persistencia comprobando que al recargar la pagina o reiniciar la sesion los datos permanezcan intactos.
 - Validacion cruzada en resoluciones moviles y pantallas de alta densidad.
+
+### Comprobacion de Calidad de Codigo
+
+```bash
+# Analisis de sintaxis y buenas practicas con ESLint
+npx eslint campusbuild/js/*.js
+```
