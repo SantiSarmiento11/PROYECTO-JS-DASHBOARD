@@ -101,3 +101,12 @@ El sistema esta concebido para maxima eficiencia de ejecucion, prescindiendo de 
   - Microsoft Edge 80 o superior
   - Safari 13 o superior
 - No se requiere instalacion previa de Node.js o servidores de base de datos SQL.
+
+### Estructura del Almacenamiento (Claves LocalStorage)
+
+| Clave en LocalStorage | Tipo de Estructura | Descripcion |
+| :--- | :--- | :--- |
+| `cb_projects` | Array de Objetos | Registro consolidado de obras civiles y estados de ejecucion |
+| `cb_activities` | Array de Objetos | Listado detallado de tareas con fechas y responsables |
+| `cb_materials` | Array de Objetos | Catalogo de materiales, existencias actuales y umbrales minimos |
+| `cb_resources` | Array de Objetos | Registro de empleados, oficios y asignaciones activas |
