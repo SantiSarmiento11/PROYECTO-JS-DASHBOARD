@@ -131,3 +131,15 @@ Validar que los archivos JavaScript de dominio esten presentes:
 ls -l js/
 ```
 No se requieren comandos de construccion como `npm install` o `npm run build`.
+
+### Ejecucion de la Aplicacion
+
+Opcion A: Abrir directamente el archivo `campusbuild/html/index.html` en el navegador con doble clic.
+
+Opcion B: Iniciar mediante un servidor HTTP local para evitar restricciones de politicas CORS de archivo local:
+```bash
+# Ejecutar desde la carpeta campusbuild:
+python -m http.server 8000
+```
+
+Navegar a la direccion: `http://localhost:8000/html/index.html`
