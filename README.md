@@ -182,3 +182,8 @@ Estructura del objeto JSON almacenado para cada entidad:
   "progreso": 38.5
 }
 ```
+
+### Manejo de Fallos y Cuota de Almacenamiento
+
+- Los metodos de `storage.js` estan encapsulados en bloques `try...catch`.
+- En caso de exceder la cuota permitida de `localStorage` (generalmente 5 MB por dominio), la aplicacion captura `QuotaExceededError` y despliega una notificacion clara solicitando depuracion o exportacion de historicos.
