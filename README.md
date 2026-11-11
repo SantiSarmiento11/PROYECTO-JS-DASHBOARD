@@ -31,3 +31,23 @@ CampusBuild esta disenado bajo un patron arquitectonico modular en JavaScript pu
    Coordina la inicializacion, eventos de interfaz y actualizacion sincronizada de vistas.
 4. Capa de Presentacion (`index.html`, `styles.css`):
    Estructura visual reactiva con retroalimentacion inmediata al usuario.
+
+### Diagrama de Flujo Arquitectonico
+
+```mermaid
+flowchart TD
+    A[Usuario / Director de Obra] -->|Acciones de Interfaz / Formularios| B[CampusBuild UI Controller app.js]
+    B --> C[Modulo de Proyectos projects.js]
+    B --> D[Modulo de Actividades activities.js]
+    B --> E[Modulo de Materiales materiales.js]
+    B --> F[Modulo de Recursos resources.js]
+    B --> G[Modulo de Calendario calendar.js]
+    C --> H[Capa de Almacenamiento Central storage.js]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    H <-->|JSON Serialization| I[(Navegador LocalStorage API)]
+    H --> J[Actualizador de Metricas y Dashboard KPIs]
+    J --> A
+```
