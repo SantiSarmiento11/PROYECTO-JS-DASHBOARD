@@ -159,3 +159,10 @@ El ciclo operativo cubre todo el flujo de gestion de obra:
 - **Modulo de Actividades**: Kanban o lista de actividades con estado (Pendiente, En Progreso, Bloqueada, Terminada).
 - **Control de Insumos**: Formulario de recepcion y despacho de materiales de obra (cemento, acero, arena, etc.).
 - **Calendario Operativo**: Mapa mensual con indicadores visuales de hitos y fechas clave de entrega.
+
+### Validaciones de Negocio Implementadas
+
+- Control de duplicidad de nombres o codigos de proyecto.
+- Validacion de coherencia temporal (la fecha de fin no puede preceder a la fecha de inicio).
+- Restriccion de stock: Advertencia automatica si la cantidad consumida excede el inventario fisico disponible.
+- Sanitizacion de cadenas para prevenir caracteres invalidos en el almacenamiento JSON.
