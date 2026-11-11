@@ -166,3 +166,19 @@ El ciclo operativo cubre todo el flujo de gestion de obra:
 - Validacion de coherencia temporal (la fecha de fin no puede preceder a la fecha de inicio).
 - Restriccion de stock: Advertencia automatica si la cantidad consumida excede el inventario fisico disponible.
 - Sanitizacion de cadenas para prevenir caracteres invalidos en el almacenamiento JSON.
+
+### Especificacion del Esquema de Datos de Proyecto
+
+Estructura del objeto JSON almacenado para cada entidad:
+```json
+{
+  "id": "proj-1718000000",
+  "nombre": "Torre Residencial Campus Alpha",
+  "ubicacion": "Sector Norte, Bucaramanga",
+  "presupuesto": 450000000,
+  "fechaInicio": "2026-01-15",
+  "fechaFin": "2026-12-20",
+  "estado": "En Curso",
+  "progreso": 38.5
+}
+```
