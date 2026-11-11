@@ -220,3 +220,11 @@ El sistema puede alojarse inmediatamente en cualquier servicio de hosting estati
 
 - Renderizado incremental del DOM actualizando unicamente las filas o tarjetas modificadas en lugar de repintar la vista completa.
 - Almacenamiento optimizado de identificadores para busquedas directas por indexacion O(1) en mapas en memoria.
+
+## Matriz de Resolucion de Incidencias
+
+| Incidencia | Posible Origen | Accion Correctiva |
+| :--- | :--- | :--- |
+| Los datos se restablecen a los valores de ejemplo | Navegador en modo de navegacion privada | Utilizar una ventana estandar del navegador para permitir persistencia en `localStorage`. |
+| Modales no se abren al hacer clic | Bloqueo de eventos por extensiones de navegador | Comprobar que no existan bloqueadores de scripts agresivos deshabilitando funciones JavaScript. |
+| Diseno desalineado en pantallas pequenas | Zoom de pantalla no estandar | Reestablecer el nivel de zoom del navegador a 100%. |
