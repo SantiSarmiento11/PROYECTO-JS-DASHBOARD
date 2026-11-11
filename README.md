@@ -228,3 +228,10 @@ El sistema puede alojarse inmediatamente en cualquier servicio de hosting estati
 | Los datos se restablecen a los valores de ejemplo | Navegador en modo de navegacion privada | Utilizar una ventana estandar del navegador para permitir persistencia en `localStorage`. |
 | Modales no se abren al hacer clic | Bloqueo de eventos por extensiones de navegador | Comprobar que no existan bloqueadores de scripts agresivos deshabilitando funciones JavaScript. |
 | Diseno desalineado en pantallas pequenas | Zoom de pantalla no estandar | Reestablecer el nivel de zoom del navegador a 100%. |
+
+## Guia de Contribucion
+
+1. Clonar y crear una bifurcacion (Fork) del proyecto.
+2. Crear una rama de desarrollo (`git checkout -b feature/modulo-alertas-presupuesto`).
+3. Registrar cambios aplicando el estandar de Conventional Commits (`git commit -m 'feat: adicionar alertas de sobrecosto presupuestario'`).
+4. Realizar push de la rama y abrir un Pull Request para revision tecnica.
