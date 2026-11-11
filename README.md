@@ -209,3 +209,9 @@ Cada transaccion relevante (creacion de actividad, modificacion de stock o cambi
 
 - Todas las inserciones en la interfaz utilizan metodos seguros de asignacion de texto o construccion de nodos DOM controlados, previniendo vulnerabilidades de Cross-Site Scripting (XSS).
 - Al no depender de comunicaciones hacia APIs de terceros no verificadas, la privacidad de los datos de costos y materiales se preserva de forma local en la maquina del operador.
+
+## Despliegue en Produccion
+
+El sistema puede alojarse inmediatamente en cualquier servicio de hosting estatico de alta disponibilidad:
+- **GitHub Pages** (directorio `campusbuild/` como raiz del sitio).
+- **Servidores Apache / Nginx** sirviendo los archivos estaticos con cabeceras de compresion Gzip activadas.
