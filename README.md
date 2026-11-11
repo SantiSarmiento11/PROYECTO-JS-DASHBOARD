@@ -200,3 +200,7 @@ Estructura del objeto JSON almacenado para cada entidad:
 # Analisis de sintaxis y buenas practicas con ESLint
 npx eslint campusbuild/js/*.js
 ```
+
+## Registro de Auditoria Local
+
+Cada transaccion relevante (creacion de actividad, modificacion de stock o cambio de fase de obra) emite un registro con marca de tiempo visible en las herramientas de desarrollo del navegador (`console.info`).
