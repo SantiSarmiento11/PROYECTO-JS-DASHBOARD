@@ -143,3 +143,12 @@ python -m http.server 8000
 ```
 
 Navegar a la direccion: `http://localhost:8000/html/index.html`
+
+## Funcionamiento del Sistema
+
+El ciclo operativo cubre todo el flujo de gestion de obra:
+1. Inicializacion y comprobacion de claves de almacenamiento mediante `storage.js`. Si estan vacias, se precargan datos de demostracion.
+2. Renderizado del Dashboard de inicio con calculo automatico de porcentaje global de avance.
+3. Registro de nuevas obras mediante modal interactivo con validacion de campos requeridos.
+4. Vinculacion de tareas especificas asociadas al proyecto en curso.
+5. Modificacion de consumos de material con actualizacion dinamica del balance de inventario.
